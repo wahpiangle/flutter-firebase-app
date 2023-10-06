@@ -3,6 +3,10 @@ import 'package:flutter_firebase_project/models/myuser.dart';
 import 'package:flutter_firebase_project/services/auth.dart';
 
 class SignIn extends StatefulWidget {
+  //to obtain the toggleView function from the parent widget
+  final Function toggleView;
+  const SignIn({super.key, required this.toggleView});
+
   @override
   State<SignIn> createState() => _SignInState();
 }
@@ -22,6 +26,19 @@ class _SignInState extends State<SignIn> {
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
         title: const Text('Sign In to Brew Crew'),
+        actions: <Widget>[
+          TextButton.icon(
+            onPressed: () {
+              widget.toggleView();
+            },
+            style: TextButton.styleFrom(iconColor: Colors.black),
+            icon: const Icon(Icons.person),
+            label: const Text(
+              'Register',
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        ],
       ),
       body: Container(
           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
