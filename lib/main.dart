@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_project/models/myuser.dart';
 import 'package:flutter_firebase_project/screens/wrapper.dart';
+import 'package:flutter_firebase_project/services/auth.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -17,8 +20,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Wrapper(),
+    return StreamProvider<MyUser?>.value(
+      initialData: null,
+      value: AuthService().user,
+      child: const MaterialApp(
+        home: Wrapper(),
+      ),
     );
   }
 }

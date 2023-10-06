@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_project/screens/authenticate/register.dart';
+import 'package:flutter_firebase_project/screens/authenticate/sign_in.dart';
 
 class Authenticate extends StatefulWidget {
   const Authenticate({super.key});
@@ -10,8 +12,6 @@ class Authenticate extends StatefulWidget {
 class _AuthenticateState extends State<Authenticate> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text('authenticate screen'),
-    );
+    return Register();
   }
 }

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_project/models/myuser.dart';
 import 'package:flutter_firebase_project/services/auth.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
+  const Register({super.key});
+
   @override
-  State<SignIn> createState() => _SignInState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
 
-  //text field state
   String email = '';
   String password = '';
 
@@ -63,7 +63,7 @@ class _SignInState extends State<SignIn> {
                   vertical: 12,
                 )),
                 child: const Text(
-                  'Sign In',
+                  'Register',
                   style: TextStyle(fontSize: 14),
                 ),
               ),
