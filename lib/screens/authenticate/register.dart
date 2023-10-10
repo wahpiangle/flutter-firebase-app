@@ -85,15 +85,18 @@ class _RegisterState extends State<Register> {
                         onPressed: () async {
                           //this will check for the helper string in the validator
                           if (_formKey.currentState!.validate()) {
+                            if (!mounted) return;
                             setState(() {
                               loading = true;
                             });
                             dynamic result = await _auth
                                 .registerWithEmailAndPassword(email, password);
+                            if (!mounted) return;
                             setState(() {
                               loading = false;
                             });
                             if (result == null) {
+                              if (!mounted) return;
                               setState(() {
                                 loading = false;
                                 error = 'Please supply a valid email';
@@ -108,7 +111,7 @@ class _RegisterState extends State<Register> {
                         )),
                         child: const Text(
                           'Register',
-                          style: TextStyle(fontSize: 14),
+                          style: TextStyle(fontSize: 16),
                         ),
                       ),
                       const SizedBox(height: 12.0),

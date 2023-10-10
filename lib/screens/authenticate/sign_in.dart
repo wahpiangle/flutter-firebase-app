@@ -83,16 +83,19 @@ class _SignInState extends State<SignIn> {
                       ElevatedButton(
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
+                            if (!mounted) return;
                             setState(() {
                               loading = true;
                             });
                             dynamic result = await _auth
                                 .signInWithEmailAndPassword(email, password);
                             setState(() {
+                              if (!mounted) return;
                               loading = false;
                             });
                             if (result == null) {
                               setState(() {
+                                if (!mounted) return;
                                 loading = false;
                                 error =
                                     'Could not sign in with those credentials';
@@ -107,7 +110,7 @@ class _SignInState extends State<SignIn> {
                         )),
                         child: const Text(
                           'Sign In',
-                          style: TextStyle(fontSize: 14),
+                          style: TextStyle(fontSize: 16),
                         ),
                       ),
                       const SizedBox(height: 12.0),
