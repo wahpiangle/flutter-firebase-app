@@ -14,6 +14,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     void showSettingsPanel() {
       showModalBottomSheet(
+          //bottom sheet is the popup from bottom
           context: context,
           builder: (context) {
             return Container(
