@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_firebase_project/models/brew.dart';
+import 'package:flutter_firebase_project/models/myuser.dart';
 
 class DatabaseService {
   final String uid;
@@ -16,14 +17,6 @@ class DatabaseService {
     });
   }
 
-  //stream to get brews collection
-  //the value can be accessed using StreamProvider<List<Brew>?>.value(
-  // data: DatabaseService(uid: '').brews,
-  //)
-  Stream<List<Brew>> get brews {
-    return brewCollection.snapshots().map(_brewListFromSnapshots);
-  }
-
   List<Brew> _brewListFromSnapshots(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       return Brew(
@@ -32,5 +25,28 @@ class DatabaseService {
         strength: doc['strength'] ?? '0',
       );
     }).toList();
+  }
+
+  //convert snapshot to UserData
+  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
+    return UserData(
+      uid: uid,
+      name: snapshot['name'],
+      sugars: snapshot['sugars'],
+      strength: snapshot['strength'],
+    );
+  }
+
+  //stream to get all brews collection
+  //the value can be accessed using StreamProvider<List<Brew>?>.value(
+  // data: DatabaseService(uid: '').brews,
+  //)
+  Stream<List<Brew>> get brews {
+    return brewCollection.snapshots().map(_brewListFromSnapshots);
+  }
+
+  //user document stream to get brew that belongs to the user
+  Stream<UserData> get userData {
+    return brewCollection.doc(uid).snapshots().map(_userDataFromSnapshot);
   }
 }
