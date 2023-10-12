@@ -85,7 +85,7 @@ class _RegisterState extends State<Register> {
                         onPressed: () async {
                           //this will check for the helper string in the validator
                           if (_formKey.currentState!.validate()) {
-                            if (!mounted) return;
+                            if (!mounted) return; //to avoid memory leaks
                             setState(() {
                               loading = true;
                             });

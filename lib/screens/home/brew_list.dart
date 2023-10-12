@@ -15,15 +15,21 @@ class _BrewListState extends State<BrewList> {
   @override
   Widget build(BuildContext context) {
     //this is a listener for the stream
-    final brews = Provider.of<List<Brew>>(context);
+    final brews = Provider.of<List<Brew>?>(context);
 
-    return Container(
-        // ListView.builder is used to build a list of widgets
-        child: ListView.builder(
-      itemCount: brews.length,
-      itemBuilder: (context, index) {
-        return BrewTile(brew: brews[index]);
-      },
-    ));
+    if (brews == null) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    } else {
+      return Container(
+          // ListView.builder is used to build a list of widgets
+          child: ListView.builder(
+        itemCount: brews.length,
+        itemBuilder: (context, index) {
+          return BrewTile(brew: brews[index]);
+        },
+      ));
+    }
   }
 }
