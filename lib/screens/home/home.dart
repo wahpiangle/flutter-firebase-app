@@ -48,7 +48,7 @@ class Home extends StatelessWidget {
               },
             ),
             TextButton.icon(
-              icon: Icon(Icons.settings, color: Colors.black),
+              icon: const Icon(Icons.settings, color: Colors.black),
               label: const Text(
                 'Settings',
                 style: TextStyle(color: Colors.black),
@@ -57,7 +57,15 @@ class Home extends StatelessWidget {
             )
           ],
         ),
-        body: BrewList(),
+        body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/coffee_bg.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: BrewList(),
+        ),
       ),
     );
   }

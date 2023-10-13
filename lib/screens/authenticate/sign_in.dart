@@ -89,13 +89,13 @@ class _SignInState extends State<SignIn> {
                             });
                             dynamic result = await _auth
                                 .signInWithEmailAndPassword(email, password);
+                            if (!mounted) return;
                             setState(() {
-                              if (!mounted) return;
                               loading = false;
                             });
                             if (result == null) {
+                              if (!mounted) return;
                               setState(() {
-                                if (!mounted) return;
                                 loading = false;
                                 error =
                                     'Could not sign in with those credentials';
